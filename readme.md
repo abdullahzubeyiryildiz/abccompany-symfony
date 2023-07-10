@@ -26,7 +26,7 @@ Bu projenin çalışması için aşağıdaki yazılımların yüklü olması ger
    cp .env.example .env
    cp .env.test.example .env.test
    
-   #Envdeki  DATABASE_URL ve DATABASE_URL_SECOND   
+   #env DATABASE_URL , DATABASE_URL_SECOND ve env.test deki DATABASE_URL alanlarını aşağıdaki örnek ile
    mysql://{kullaniciadi}:{sifre}@127.0.0.1:3306/abccompany_test
    #Kendi Phpmyadmin bilgileriniz ile güncelleyin
 

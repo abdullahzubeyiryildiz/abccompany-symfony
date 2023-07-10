@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "276c834a-03ad-4573-a8fe-13be3bde1f5d",
+		"name": "abcompany",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "6303660"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"musteri4@abccompany.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"musteri2@abccompany.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"var orderCode = jsonData.orderCode;\r",
+									"pm.collectionVariables.set('order_id', orderCode);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"productId\": 2,\r\n  \"quantity\": 3,\r\n  \"address\": \"Adres\"\r\n  //\"shippingDate\": \"2023-07-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \r\n  \"productId\": 1,\r\n  \"quantity\": 3,\r\n  \"address\": \"Adresss\",\r\n   \"shippingDate\": \"2023-07-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/orders/{{order_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "show order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/api/orders/{{order_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "gel order list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/api/orders"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2ODg5NDM3OTIsImV4cCI6MTY4ODk0NzM5Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoibXVzdGVyaTJAYWJjY29tcGFueS5jb20ifQ.FRcY3W3drawXOCdr6V0oc4yLCV0wHHk1rgFOXynoaalZcusafOD5BtpKnpXpx7xEzrOPViURZL4lTGC3_vSSW7mhQ7tvVDc6jsXhWcHDWz-ouhTQsZyMZK9h4IZl454hrIOJS0Ud7eouBoouGn0uzIw8jiZWbFOz4fHCOWrc8aMMPVpSpjiCYTfvUhC_BwCNpp2spHqspR_cT2-0JW3oZM-ZjK9qMnKUgcHTtetKb-f8HKfZSPyukf4uz8fB6Ag39TtZ4C8SxSBLT2MppbdrKhFXs3Mbc6KIzAM6iPn94UPJ_EQvtGOJK-fc5FH4PU8ntyErQQ2otRp2womiLISUfA"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8888",
+			"type": "string"
+		},
+		{
+			"key": "order_id",
+			"value": "ORD-1688896578",
+			"type": "string"
+		}
+	]
+}

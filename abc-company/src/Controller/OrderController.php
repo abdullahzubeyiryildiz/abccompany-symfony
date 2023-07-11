@@ -17,16 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use \Exception;
 
-/**
- * @Route("/api/orders")  
+/** 
  * @IsGranted("ROLE_USER")
  */
 class OrderController extends AbstractController
 {
     const ORDER_PREFIX = 'ORD-';
-    /**
-     * @Route("", name="order_create", methods={"POST"})
-     */
+   
     public function create(Request $request,EntityManagerInterface $entityManager): Response
     { 
         $data = json_decode($request->getContent(), true);
@@ -65,9 +62,7 @@ class OrderController extends AbstractController
         return $this->json($order, Response::HTTP_CREATED);
     }
 
-    /**
-     * @Route("/{order_no}", name="order_update", methods={"PUT"})
-     */
+   
     public function update(Request $request, OrderRepository $orderRepository, $order_no, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
@@ -114,9 +109,7 @@ class OrderController extends AbstractController
         return new Response('Update operation could not be completed.', Response::HTTP_BAD_REQUEST);
     }
 
-   /**
-     * @Route("/{order_no}", name="order_show", methods={"GET"})
-     */
+   
     public function show(OrderRepository $orderRepository, $order_no): Response
     {
         $user = $this->getUser();
@@ -139,9 +132,7 @@ class OrderController extends AbstractController
         return $this->json($order);
     }
 
-    /**
-     * @Route("", name="order_list", methods={"GET"})
-     */
+    
     public function index(UserInterface $user): Response
     {
         

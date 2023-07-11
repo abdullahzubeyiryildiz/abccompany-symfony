@@ -1,8 +1,41 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+order_create:
+    path: /api/orders
+    controller: App\Controller\OrderController::create
+    methods: [POST]
+
+order_update:
+    path: /api/orders/{order_no}
+    controller: App\Controller\OrderController::update
+    methods: [PUT]
+
+order_show:
+    path: /api/orders/{order_no}
+    controller: App\Controller\OrderController::show
+    methods: [GET]
+
+order_list:
+    path: /api/orders
+    controller: App\Controller\OrderController::index
+    methods: [GET]
+
 api:
     resource: '../src/Controller/'
     type: annotation
 
-    
+register:
+    path: /api/register
+    controller: App\Controller\AuthController::register
+    methods: [POST]
+
+login:
+    path: /api/login
+    controller: App\Controller\AuthController::login
+    methods: [POST]
+
+protected_route:
+    path: /api/some-protected-route
+    controller: App\Controller\AuthController::protectedRoute
+    methods: [GET]

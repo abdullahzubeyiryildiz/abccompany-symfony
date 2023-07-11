@@ -14,9 +14,7 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 class AuthController extends AbstractController
 {
-    /**
-     * @Route("/api/register", name="register", methods={"POST"})
-     */
+    
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $em = $this->getDoctrine()->getManager();
@@ -33,11 +31,7 @@ class AuthController extends AbstractController
 
         return new JsonResponse(['message' => 'User registered successfully'], JsonResponse::HTTP_CREATED);
     }
- 
-
-    /**
-     * @Route("/api/login", name="login", methods={"POST"})
-     */
+  
     public function login(Request $request, UserProviderInterface $userProvider, UserPasswordEncoderInterface $encoder, JWTTokenManagerInterface $jwtManager): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -55,15 +49,9 @@ class AuthController extends AbstractController
         return new JsonResponse(['token' => $token,'message'=>'Login Success',]);
     }
 
-
-    /**
-     * @Route("/api/some-protected-route", name="protected_route", methods={"GET"})
-     */
+ 
     public function protectedRoute(): JsonResponse
-    {
-        // Burada korumalı rotaya ait işlemleri gerçekleştirin
-        // Örnek olarak, korumalı bir veriye erişim veya bir işlem yapabilirsiniz
-
+    { 
         return new JsonResponse(['message' => 'Protected Route Accessed']);
     }
 
